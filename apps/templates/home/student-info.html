@@ -1,0 +1,123 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Form Elements</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Form Componants</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Form Elements</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Basic Componant</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5>Form controls</h5>
+                                <hr>
+                                <div class="row">
+                                    <div class="avatar-wrapper">
+                                        <img class="profile-pic" src="" />
+                                        <div class="upload-button">
+                                            <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                                        </div>
+                                        <input class="file-upload" type="file" accept="image/*" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form>
+                                            <div class="form-group">
+                                                <label>Code</label>
+                                                <input type="text" class="form-control" id="studentCode" placeholder="Enter student code">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input type="text" class="form-control" id="studentName" placeholder="Enter student name">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <form>
+                                            <div class="form-group">
+                                                <label>Text</label>
+                                                <input type="text" class="form-control" placeholder="Text">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Gender</label>
+                                                <select class="form-control" id="exampleFormControlSelect1">
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Example textarea</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                    rows="3"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary" style="float:right; width: 100px;">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    $(document).ready(function () {
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function () {
+            $(".file-upload").click();
+        });
+    });
+</script>
+{% endblock javascripts %}
