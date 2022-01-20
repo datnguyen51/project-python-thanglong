@@ -6741,7 +6741,7 @@ body.layout-8 .card:hover {
 /*  ================ new css =================== */
 .datepicker-dropdown {
   padding: 20px;
-  color: #fff;
+  color: #000000;
   background: #3f4d67;
   font-size: 14px;
 }
