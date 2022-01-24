@@ -8,21 +8,27 @@ from flask_login import UserMixin
 
 from apps import db, login_manager
 
-from apps.authentication.util import hash_pass
-
 
 def default_uuid():
     return str(uuid.uuid4())
 
 
-class Users(db.Model, UserMixin):
+class Student(db.Model, UserMixin):
 
-    __tablename__ = 'users'
+    __tablename__ = 'student'
 
     id = db.Column(db.String(100), primary_key=True, default=default_uuid)
-    username = db.Column(db.String(64), unique=True)
-    email = db.Column(db.String(64), unique=True)
-    password = db.Column(db.LargeBinary)
+    code = db.Column(db.String(64), unique=True)
+    name = db.Column(db.String(250))
+    address = db.Column(db.String(250))
+    gender = db.Column(db.Boolean())
+    birthday = db.Column(db.DateTime())
+    phone_number = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    identification = db.Column(db.String(100))  # Căn cước công dân
+    health_insurance = db.Column(db.String(100))  # Bảo hiểm y tế
+    student_class = db.Column(db.String(100))
+    student_major = db.Column(db.String(100))
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():
@@ -33,22 +39,19 @@ class Users(db.Model, UserMixin):
                 # the ,= unpack of a singleton fails PEP8 (travis flake8 test)
                 value = value[0]
 
-            if property == 'password':
-                value = hash_pass(value)  # we need bytes here (not plain str)
-
             setattr(self, property, value)
 
     def __repr__(self):
-        return str(self.username)
+        return str(self.code)
 
 
 @login_manager.user_loader
 def user_loader(id):
-    return Users.query.filter_by(id=id).first()
+    return Student.query.filter_by(id=id).first()
 
 
 @login_manager.request_loader
 def request_loader(request):
-    username = request.form.get('username')
-    user = Users.query.filter_by(username=username).first()
-    return user if user else None
+    code = request.form.get('code')
+    record_student = Student.query.filter_by(code=code).first()
+    return record_student if record_student else None
