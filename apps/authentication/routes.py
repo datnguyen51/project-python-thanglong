@@ -3,6 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
+from flask import jsonify
 from flask import render_template, redirect, request, url_for
 from flask_login import (
     current_user,
@@ -28,6 +29,7 @@ def route_default():
 @blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm(request.form)
+    # print(request.form)
     if 'login' in request.form:
 
         # read form data
@@ -39,7 +41,6 @@ def login():
 
         # Check the password
         if user and verify_pass(password, user.password):
-
             login_user(user)
             return redirect(url_for('authentication_blueprint.route_default'))
 
@@ -51,6 +52,7 @@ def login():
     if not current_user.is_authenticated:
         return render_template('accounts/login.html',
                                form=login_form)
+    # print(14)
     return redirect(url_for('home_blueprint.index'))
 
 
