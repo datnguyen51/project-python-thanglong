@@ -32,7 +32,7 @@ def add_students():
         birthday = request.form['birthday']
         email = request.form['email']
         phone_number = request.form['phone_number']
-        indentify_card = request.form['indentify_card']
+        identify_card = request.form['identify_card']
         bhyt = request.form['bhyt']
         student_class = request.form['class']
         student_major = request.form['major']
