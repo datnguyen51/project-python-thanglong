@@ -18,12 +18,11 @@ def students():
 
 @blueprint.route('/add_student', methods=['GET', 'POST'])
 @login_required
-def add_students():
+def add_student():
     if request.method == 'GET':
         return render_template('students/student-info.html')
+
     if request.method == 'POST':
-        # print(request.form)
-        # print(request.files)
         avatar = request.files['avatar']
         code = request.form['code']
         name = request.form['name']
@@ -32,11 +31,47 @@ def add_students():
         birthday = request.form['birthday']
         email = request.form['email']
         phone_number = request.form['phone_number']
-        identify_card = request.form['identify_card']
-        bhyt = request.form['bhyt']
-        student_class = request.form['class']
-        student_major = request.form['major']
-        print(avatar)
-        # return
+        identification = request.form['identification']
+        health_insurance = request.form['health_insurance']
+        student_class = request.form['student_class']
+        student_major = request.form['student_major']
+
+        if not code:
+            return render_template('students/student-info.html', has_error='Code is empty!')
+        if not name:
+            return render_template('students/student-info.html', has_error='Name is empty!')
+        if not address:
+            return render_template('students/student-info.html', has_error='Address is empty!')
+        if not gender:
+            return render_template('students/student-info.html', has_error='Gender is empty!')
+        if not birthday:
+            return render_template('students/student-info.html', has_error='Birthday is empty!')
+        if not email:
+            return render_template('students/student-info.html', has_error='Email is empty!')
+        if not phone_number:
+            return render_template('students/student-info.html', has_error='Phone number is empty!')
+        if not student_class:
+            return render_template('students/student-info.html', has_error='Class is empty!')
+        if not student_major:
+            return render_template('students/student-info.html', has_error='Major is empty!')
+
+        record_student = Student.query.filter_by(
+            code=code).filter_by(
+            deleted=False).first()
+
+        if record_student:
+            return render_template('students/student-info.html', has_error='Student code already exists!')
+
+        record_student = Student.query.filter_by(
+            email=email).filter_by(
+            deleted=False).first()
+
+        if record_student:
+            return render_template('students/student-info.html', has_error='Student email already exists!')
+
+        record_student = Student(**request.form)
+        db.session.add(record_student)
+        db.session.commit()
+
         return render_template('students/student-info.html')
     # return render_template('students/student-info.html')

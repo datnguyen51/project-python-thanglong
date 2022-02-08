@@ -19,9 +19,10 @@ class Student(db.Model, UserMixin):
 
     id = db.Column(db.String(100), primary_key=True, default=default_uuid)
     code = db.Column(db.String(64), unique=True)
+    avatar = db.Column(db.String(64))
     name = db.Column(db.String(250))
     address = db.Column(db.String(250))
-    gender = db.Column(db.Boolean())
+    gender = db.Column(db.String())
     birthday = db.Column(db.DateTime())
     phone_number = db.Column(db.String(100))
     email = db.Column(db.String(100))
@@ -29,6 +30,7 @@ class Student(db.Model, UserMixin):
     health_insurance = db.Column(db.String(100))  # Bảo hiểm y tế
     student_class = db.Column(db.String(100))
     student_major = db.Column(db.String(100))
+    deleted = db.Column(db.Boolean(), default=False)
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():

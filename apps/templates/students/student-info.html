@@ -28,6 +28,12 @@
         </div>
         <!-- [ breadcrumb ] end -->
         <div class="main-body">
+            {% if has_error %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{has_error}}
+            </div>
+            {% endif %}
             <div class="page-wrapper">
                 <!-- [ Main Content ] start -->
                 <div class="row">
@@ -103,12 +109,12 @@
 
                                                 <div class="form-group col-md-3">
                                                     <label>Identify Card</label>
-                                                    <input type="text" class="form-control" name="identify_card">
+                                                    <input type="text" class="form-control" name="identification">
                                                 </div>
                                 
                                                 <div class="form-group col-md-3" style='margin-right: 50px;'>
-                                                    <label>BHYT</label>
-                                                    <input type="text" class="form-control" name="bhyt">
+                                                    <label>Health Insurance</label>
+                                                    <input type="text" class="form-control" name="health_insurance">
                                                 </div>
                                             </div>                                    
                                         </div>
@@ -117,12 +123,12 @@
                                             <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
                                                 <div class="form-group col-md-2" style='margin-left: 50px;'>
                                                     <label>Class</label>
-                                                    <input type="text" class="form-control" name="class">
+                                                    <input type="text" class="form-control" name="student_class">
                                                 </div>
                                         
                                                 <div class="form-group col-md-8" style='margin-right: 50px;'>
                                                     <label>Major</label>
-                                                    <input type="text" class="form-control" name="major">
+                                                    <input type="text" class="form-control" name="student_major">
                                                 </div>
                                             </div>
                                         </div>
