@@ -13,7 +13,7 @@ def students():
     records_student = Student.query.all()
     print(records_student)
 
-    return render_template('students/students.html')
+    return render_template('students/students.html', student=records_student)
 
 
 @blueprint.route('/add_student', methods=['GET', 'POST'])

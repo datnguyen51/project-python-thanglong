@@ -63,48 +63,22 @@
                                         </thead>
                                         <tbody>
                                             {% if student %}
-                                            <tr>
-                                                <th>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            id="exampleCheck1">
-                                                        <label class="form-check-label"></label>
-                                                    </div>
-                                                </th>
-                                                <th scope="row">1</th>
-                                                <td>A30091</td>
-                                                <td>Nguyen Van Dat</td>
-                                                <td>TI30h1</td>
-                                                <td>Computer Science</td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            id="exampleCheck1">
-                                                        <label class="form-check-label"></label>
-                                                    </div>
-                                                </th>
-                                                <th scope="row">1</th>
-                                                <td>A30091</td>
-                                                <td>Nguyen Van Dat</td>
-                                                <td>TI30h1</td>
-                                                <td>Computer Science</td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            id="exampleCheck1">
-                                                        <label class="form-check-label"></label>
-                                                    </div>
-                                                </th>
-                                                <th scope="row">1</th>
-                                                <td>A30091</td>
-                                                <td>Nguyen Van Dat</td>
-                                                <td>TI30h1</td>
-                                                <td>Computer Science</td>
-                                            </tr>
+                                                {% for data_student in student %}
+                                                <tr>
+                                                    <th>
+                                                        <div class="form-check">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="exampleCheck1">
+                                                            <label class="form-check-label"></label>
+                                                        </div>
+                                                    </th>
+                                                    <th scope="row">1</th>
+                                                    <td>{{ data_student.code }}</td>
+                                                    <td>{{ data_student.name }}</td>
+                                                    <td>{{ data_student.student_class }}</td>
+                                                    <td>{{ data_student.student_major }}</td>
+                                                </tr>
+                                                {% endfor %}
                                             {% endif %}
                                         </tbody>
                                     </table>

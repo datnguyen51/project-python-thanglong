@@ -19,7 +19,7 @@ class Student(db.Model, UserMixin):
 
     id = db.Column(db.String(100), primary_key=True, default=default_uuid)
     code = db.Column(db.String(64), unique=True)
-    avatar = db.Column(db.String(64))
+    avatar = db.Column(db.String(250))
     name = db.Column(db.String(250))
     address = db.Column(db.String(250))
     gender = db.Column(db.String())
