@@ -34,124 +34,252 @@
                 {{has_error}}
             </div>
             {% endif %}
-            <div class="page-wrapper">
-                <!-- [ Main Content ] start -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Basic Componant</h5>
-                            </div>
-                            <div class="card-body">
-                                <h5>Form controls</h5>
-                                <hr>
-                                <div class="column">
-                                    <form action="/add_student" method="post" enctype="multipart/form-data">
-                                        <div class="avatar-wrapper form-group">
-                                            <img class="profile-pic" src="https://banner2.cleanpng.com/20180703/ya/kisspng-computer-icons-user-avatar-user-5b3bafe2381423.1933594815306383062297.jpg" />
-                                            <div class="upload-button">
-                                                <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                                            </div>
-                                            <input class="file-upload" type="file" accept="image/*" id="avatar" name="avatar"/>
-                                        </div>
-
-                                        <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
-                                            <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
-                                                <div class="form-group col-md-2" style='margin-left: 50px;'>
-                                                    <label>Code</label>
-                                                    <input type="text" class="form-control" name='code' id="code">
+                {% if student %}
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Basic Componant</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5>Form controls</h5>
+                                    <hr>
+                                    <div class="column">
+                                        <form action="/add_student" method="post" enctype="multipart/form-data">
+                                            <div class="avatar-wrapper form-group">
+                                                <img class="profile-pic" src="https://banner2.cleanpng.com/20180703/ya/kisspng-computer-icons-user-avatar-user-5b3bafe2381423.1933594815306383062297.jpg" />
+                                                <div class="upload-button">
+                                                    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                                                 </div>
+                                                <input class="file-upload" type="file" accept="image/*" id="avatar" name="avatar"/>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-2" style='margin-left: 50px;'>
+                                                        <label>Code</label>
+                                                        <input type="text" class="form-control" name='code' id="code" value={{student.code}}>
+                                                    </div>
+                                                
+                                                    <div class="form-group col-md-8" style='margin-right: 50px;'>
+                                                        <label>Name</label>
+                                                        <input type="text" class="form-control" name='name' id="name" value='{{student.name}}'>
+                                                    </div>                                                
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-7" style='margin-left: 50px;'>
+                                                        <label>Address</label>
+                                                        <input type="text" class="form-control" name="address" value='{{student.address}}'>
+                                                    </div>
                                             
-                                                <div class="form-group col-md-8" style='margin-right: 50px;'>
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" name='name' id="name">
-                                                </div>                                                
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
-                                            <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
-                                                <div class="form-group col-md-7" style='margin-left: 50px;'>
-                                                    <label>Address</label>
-                                                    <input type="text" class="form-control" name="address">
-                                                </div>
-                                        
-                                                <div class="form-group col-md-3" style='margin-right: 50px;'>
-                                                    <label>Gender</label>
-                                                    <select class="form-control" name="gender">
-                                                        <option value='1'>Male</option>
-                                                        <option value='0'>Female</option>
-                                                    </select>
+                                                    <div class="form-group col-md-3" style='margin-right: 50px;'>
+                                                        <label>Gender</label>
+                                                        {% if student.gender == '1' %}
+                                                            <select class="form-control" name="gender" value='Male'>
+                                                                <option value='1'>Male</option>
+                                                                <option value='0'>Female</option>
+                                                            </select>
+                                                        {% else %}
+                                                            <select class="form-control" name="gender" value='Female'>
+                                                                <option value='1'>Male</option>
+                                                                <option value='0'>Female</option>
+                                                            </select>
+                                                        {% endif %}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
-                                            <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
-                                                <div class="form-group col-md-4" style='margin-left: 50px;'>
-                                                    <label>Birthday</label>
-                                                    <input type="date" class="form-control datepicker-dropdown" name="birthday">
-                                                </div>
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-4" style='margin-left: 50px;'>
+                                                        <label>Birthday</label>
+                                                        <input type="date" class="form-control datepicker-dropdown" name="birthday">
+                                                    </div>
 
-                                                <div class="form-group col-md-6" style='margin-right: 50px;'>
-                                                    <label>Email</label>
-                                                    <input type="text" class="form-control" name="email">
+                                                    <div class="form-group col-md-6" style='margin-right: 50px;'>
+                                                        <label>Email</label>
+                                                        <input type="text" class="form-control" name="email" value={{student.email}}>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
-                                            <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
-                                                <div class="form-group col-md-4" style='margin-left: 50px;'>
-                                                    <label>Phone Number</label>
-                                                    <input type="text" class="form-control" name="phone_number">
-                                                </div>
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-4" style='margin-left: 50px;'>
+                                                        <label>Phone Number</label>
+                                                        <input type="text" class="form-control" name="phone_number" value={{student.phone_number}}>
+                                                    </div>
 
-                                                <div class="form-group col-md-3">
-                                                    <label>Identify Card</label>
-                                                    <input type="text" class="form-control" name="identification">
-                                                </div>
-                                
-                                                <div class="form-group col-md-3" style='margin-right: 50px;'>
-                                                    <label>Health Insurance</label>
-                                                    <input type="text" class="form-control" name="health_insurance">
-                                                </div>
-                                            </div>                                    
-                                        </div>
+                                                    <div class="form-group col-md-3">
+                                                        <label>Identify Card</label>
+                                                        <input type="text" class="form-control" name="identification" value={{student.identification}}>
+                                                    </div>
+                                    
+                                                    <div class="form-group col-md-3" style='margin-right: 50px;'>
+                                                        <label>Health Insurance</label>
+                                                        <input type="text" class="form-control" name="health_insurance" value={{student.health_insurance}}>
+                                                    </div>
+                                                </div>                                    
+                                            </div>
 
-                                        <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
-                                            <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
-                                                <div class="form-group col-md-2" style='margin-left: 50px;'>
-                                                    <label>Class</label>
-                                                    <input type="text" class="form-control" name="student_class">
-                                                </div>
-                                        
-                                                <div class="form-group col-md-8" style='margin-right: 50px;'>
-                                                    <label>Major</label>
-                                                    <input type="text" class="form-control" name="student_major">
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-2" style='margin-left: 50px;'>
+                                                        <label>Class</label>
+                                                        <input type="text" class="form-control" name="student_class" value={{student.student_class}}>
+                                                    </div>
+                                            
+                                                    <div class="form-group col-md-8" style='margin-right: 50px;'>
+                                                        <label>Major</label>
+                                                        <input type="text" class="form-control" name="student_major" value='{{student.student_major}}'>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
-                                            <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
-                                                <div class="form-group" style="margin-right:auto; margin-left:auto">
-                                                    <!-- <button type="submit" class="btn btn-primary" style="width: 100px;">Submit</button> -->
-                                                    <input type="submit" class="btn btn-primary" style="width: 100px;" value="Submit">
-                                                    <a href="/students"><button type="button" class="btn btn-warning" title="btn btn-warning"
-                                                            style="float:right; width: 100px;">Cancel</button></a>
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group" style="margin-right:auto; margin-left:auto">
+                                                        <!-- <button type="submit" class="btn btn-primary" style="width: 100px;">Submit</button> -->
+                                                        <input type="submit" class="btn btn-primary" style="width: 100px;" value="Submit">
+                                                        <a href="/students"><button type="button" class="btn btn-warning" title="btn btn-warning"
+                                                                style="float:right; width: 100px;">Cancel</button></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- [ Main Content ] end -->
                 </div>
-                <!-- [ Main Content ] end -->
-            </div>
+                {% else %}
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Basic Componant</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5>Form controls</h5>
+                                    <hr>
+                                    <div class="column">
+                                        <form action="/add_student" method="post" enctype="multipart/form-data">
+                                            <div class="avatar-wrapper form-group">
+                                                <img class="profile-pic" src="https://banner2.cleanpng.com/20180703/ya/kisspng-computer-icons-user-avatar-user-5b3bafe2381423.1933594815306383062297.jpg" />
+                                                <div class="upload-button">
+                                                    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                                                </div>
+                                                <input class="file-upload" type="file" accept="image/*" id="avatar" name="avatar"/>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-2" style='margin-left: 50px;'>
+                                                        <label>Code</label>
+                                                        <input type="text" class="form-control" name='code' id="code">
+                                                    </div>
+                                                
+                                                    <div class="form-group col-md-8" style='margin-right: 50px;'>
+                                                        <label>Name</label>
+                                                        <input type="text" class="form-control" name='name' id="name">
+                                                    </div>                                                
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-7" style='margin-left: 50px;'>
+                                                        <label>Address</label>
+                                                        <input type="text" class="form-control" name="address">
+                                                    </div>
+                                            
+                                                    <div class="form-group col-md-3" style='margin-right: 50px;'>
+                                                        <label>Gender</label>
+                                                        <select class="form-control" name="gender">
+                                                            <option value='1'>Male</option>
+                                                            <option value='0'>Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-4" style='margin-left: 50px;'>
+                                                        <label>Birthday</label>
+                                                        <input type="date" class="form-control datepicker-dropdown" name="birthday">
+                                                    </div>
+
+                                                    <div class="form-group col-md-6" style='margin-right: 50px;'>
+                                                        <label>Email</label>
+                                                        <input type="text" class="form-control" name="email">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-4" style='margin-left: 50px;'>
+                                                        <label>Phone Number</label>
+                                                        <input type="text" class="form-control" name="phone_number">
+                                                    </div>
+
+                                                    <div class="form-group col-md-3">
+                                                        <label>Identify Card</label>
+                                                        <input type="text" class="form-control" name="identification">
+                                                    </div>
+                                    
+                                                    <div class="form-group col-md-3" style='margin-right: 50px;'>
+                                                        <label>Health Insurance</label>
+                                                        <input type="text" class="form-control" name="health_insurance">
+                                                    </div>
+                                                </div>                                    
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-2" style='margin-left: 50px;'>
+                                                        <label>Class</label>
+                                                        <input type="text" class="form-control" name="student_class">
+                                                    </div>
+                                            
+                                                    <div class="form-group col-md-8" style='margin-right: 50px;'>
+                                                        <label>Major</label>
+                                                        <input type="text" class="form-control" name="student_major">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group" style="margin-right:auto; margin-left:auto">
+                                                        <!-- <button type="submit" class="btn btn-primary" style="width: 100px;">Submit</button> -->
+                                                        <input type="submit" class="btn btn-primary" style="width: 100px;" value="Submit">
+                                                        <a href="/students"><button type="button" class="btn btn-warning" title="btn btn-warning"
+                                                                style="float:right; width: 100px;">Cancel</button></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Main Content ] end -->
+                </div>
+                {% endif %}
         </div>
     </div>
 </div>
