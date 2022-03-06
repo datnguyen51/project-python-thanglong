@@ -4,9 +4,10 @@
 - cd repo
 - pip install -r requirements.txt
 - database postgresql
-$ sudo -su postgres psql
-$ create user dbadmin with password 'admin1234';
-$ create database python_project;
-$ alter user dbadmin with superuser;
+
+  $ sudo -su postgres psql
+  $ create user dbadmin with password 'admin1234';
+  $ create database python_project;
+  $ alter user dbadmin with superuser;
 
 - python3 run.py
