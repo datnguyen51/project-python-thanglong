@@ -10,6 +10,9 @@ from decouple import config
 from apps.config import config_dict
 from apps import create_app, db
 
+from settings import UPLOAD_FOLDER
+
+
 # WARNING: Don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
@@ -25,6 +28,9 @@ except KeyError:
 
 app = create_app(app_config)
 Migrate(app, db)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 if DEBUG:
     app.logger.info('DEBUG       = ' + str(DEBUG))

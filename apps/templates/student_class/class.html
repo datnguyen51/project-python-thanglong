@@ -41,13 +41,9 @@
                     <div class="col-xl-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Student</h5>
+                                <h5>Class</h5>
                                 <!-- <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span> -->
-                                <form action='/import-student', method='post'>
-                                    <button type="submit" class="btn btn-success"
-                                        title="btn btn-primary" style="float:right; width: 100px;">Import</button>
-                                </form>
-                                <a href="/add-student"><button type="button" class="btn btn-primary"
+                                <a href="/add-class"><button type="button" class="btn btn-primary"
                                         title="btn btn-primary" style="float:right; width: 100px;">Add</button>
                                 </a>
                             </div>
@@ -65,14 +61,13 @@
                                                 </th>
                                                 <th>Code</th>
                                                 <th>Name</th>
-                                                <th>Class</th>
-                                                <th>Major</th>
+                                                <th>Teacher</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% if student %}
-                                                {% for data_student in student %}
+                                            {% if student_class %}
+                                                {% for data_class in student_class %}
                                                 <tr>
                                                     <th>
                                                         <div class="form-check">
@@ -81,13 +76,12 @@
                                                             <label class="form-check-label"></label>
                                                         </div>
                                                     </th>
-                                                    <td>{{ data_student.code }}</td>
-                                                    <td>{{ data_student.name }}</td>
-                                                    <td>{{ data_student.student_class }}</td>
-                                                    <td>{{ data_student.student_major }}</td>
+                                                    <td>{{ data_class.code }}</td>
+                                                    <td>{{ data_class.class_name }}</td>
+                                                    <td>{{ data_class.teacher }}</td>
                                                     <th>
-                                                        <a href="/info-student/{{data_student.id}}" style='font-size:18px'><i class='fas fa-edit'></i></a>
-                                                        <a href="/student/{{data_student.id}}" style='font-size:18px'><i class='far fa-trash-alt'></i></a>
+                                                        <a href="/info-class/{{data_class.id}}" style='font-size:18px'><i class='fas fa-edit'></i></a>
+                                                        <a href="/class/{{data_class.id}}" style='font-size:18px'><i class='far fa-trash-alt'></i></a>
                                                     </th>
                                                 </tr>                                                
                                                 {% endfor %}

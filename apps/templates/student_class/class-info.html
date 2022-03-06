@@ -1,0 +1,341 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Form Elements</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Form Componants</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Form Elements</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            {% if has_error %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{has_error}}
+            </div>
+            {% endif %}
+                {% if student_class %}
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Basic Componant</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5>Form controls</h5>
+                                    <hr>
+                                    <div class="column">
+                                        <form action="/info-class/{{student_class.id}}" method="post" enctype="multipart/form-data">
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-2" style='margin-left: 50px;'>
+                                                        <label>Code</label>
+                                                        <input type="text" class="form-control" name='code' id="code" value={{student_class.code}}>
+                                                    </div>
+                                                
+                                                    <div class="form-group col-md-8" style='margin-right: 50px;'>
+                                                        <label>Name</label>
+                                                        <input type="text" class="form-control" name='name' id="name" value='{{student_class.class_name}}'>
+                                                    </div>                                                
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-10" style='margin-left: 50px;'>
+                                                        <label>Teacher</label>
+                                                        {% if student_class.teacher %}
+                                                            {% if teacher %}
+                                                            <select id="teacher" class="form-control" name="teacher" value='{{student_class.teacher}}'>
+                                                                {% for data_teacher in teacher %}
+                                                                    <option value="{{data_teacher.id}}">{{data_teacher.name}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                            {% else %}
+                                                            <select id="teacher" class="form-control" name="teacher" value='{{student_class.teacher}}'>
+                                                            </select>
+                                                            {% endif %}
+                                                        {% else %}
+                                                            {% if teacher %}
+                                                            <select id="teacher" class="form-control" name="teacher">
+                                                                {% for data_teacher in teacher %}
+                                                                    <option value="{{data_teacher.id}}">{{data_teacher.name}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                            {% else %}
+                                                            <select id="teacher" class="form-control" name="teacher">
+                                                            </select>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="card-block table-border-style">
+                                                    <div class="table-responsive">
+                                                        <label>Student of class</label>
+                                                        <table id="myTable" class="table table-hover" style="text-align:center;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" class="form-check-input"
+                                                                                id="exampleCheck1">
+                                                                            <label class="form-check-label"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <th>Code</th>
+                                                                    <th>Name</th>
+                                                                    <th>Class</th>
+                                                                    <th>Major</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {% if student %}
+                                                                    {% for data_student in student %}
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="form-check">
+                                                                                <input name="students_id" type="checkbox" class="form-check-input"
+                                                                                    id="exampleCheck1" value="{{data_student.id}}">
+                                                                                <label class="form-check-label"></label>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>{{ data_student.code }}</td>
+                                                                        <td>{{ data_student.name }}</td>
+                                                                        <td>{{ data_student.student_class }}</td>
+                                                                        <td>{{ data_student.student_major }}</td>
+                                                                    </tr>                                                
+                                                                    {% endfor %}
+                                                                {% endif %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group" style="margin-right:auto; margin-left:auto">
+                                                        <!-- <button type="submit" class="btn btn-primary" style="width: 100px;">Submit</button> -->
+                                                        <input type="submit" class="btn btn-primary" style="width: 100px;" value="Submit">
+                                                        <a href="/class"><button type="button" class="btn btn-warning" title="btn btn-warning"
+                                                                style="float:right; width: 100px;">Cancel</button></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Main Content ] end -->
+                </div>
+                {% else %}
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Basic Componant</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5>Form controls</h5>
+                                    <hr>
+                                    <div class="column">
+                                        <form action="/add-class" method="post" enctype="multipart/form-data">
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-2" style='margin-left: 50px;'>
+                                                        <label>Code</label>
+                                                        <input type="text" class="form-control" name='code' id="code">
+                                                    </div>
+                                                
+                                                    <div class="form-group col-md-8" style='margin-right: 50px;'>
+                                                        <label>Name</label>
+                                                        <input type="text" class="form-control" name='name' id="name">
+                                                    </div>                                                
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group col-md-10" style='margin-left: 50px;'>
+                                                        <label>Teacher</label>
+                                                        {% if teacher %}
+                                                        <select id="teacher" class="form-control" name="teacher">
+                                                            {% for data_teacher in teacher %}
+                                                                <option value="{{data_teacher.id}}">{{data_teacher.name}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        {% else %}
+                                                        <select id="teacher" class="form-control" name="teacher">
+                                                        </select>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="card-block table-border-style">
+                                                    <div class="table-responsive">
+                                                        <table id="myTable" class="table table-hover" style="text-align:center;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" class="form-check-input"
+                                                                                id="exampleCheck1">
+                                                                            <label class="form-check-label"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <th>Code</th>
+                                                                    <th>Name</th>
+                                                                    <th>Class</th>
+                                                                    <th>Major</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {% if student %}
+                                                                    {% for data_student in student %}
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="form-check">
+                                                                                <input name="students_id" type="checkbox" class="form-check-input"
+                                                                                    id="exampleCheck1" value="{{data_student.id}}">
+                                                                                <label class="form-check-label"></label>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>{{ data_student.code }}</td>
+                                                                        <td>{{ data_student.name }}</td>
+                                                                        <td>{{ data_student.student_class }}</td>
+                                                                        <td>{{ data_student.student_major }}</td>
+                                                                    </tr>                                                
+                                                                    {% endfor %}
+                                                                {% endif %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
+                                                    <div class="form-group" style="margin-right:auto; margin-left:auto">
+                                                        <!-- <button type="submit" class="btn btn-primary" style="width: 100px;">Submit</button> -->
+                                                        <button type="submit" class="add-class btn btn-primary" style="width: 100px;">Submit</button>
+                                                        <a href="/students"><button type="button" class="btn btn-warning" title="btn btn-warning"
+                                                                style="float:right; width: 100px;">Cancel</button></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ Main Content ] end -->
+                </div>
+                {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    $(document).ready(function () {
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function () {
+            $(".file-upload").click();
+        });
+    });
+
+    function post(params) {
+        let form = $(" <form method='post'></form>");
+        $.each(params, function (name, value) {
+            form.append($(`<input type="hidden" name=${name} value=${value}></input>`));
+            form.append($("input[name='_xsrf']")[0]);
+        });
+        $(document.body).append(form);
+        form.submit();
+    }
+
+    $(".add-class").click(function (event) {
+        event.preventDefault();
+        let code = $('#code').val();
+        let name = $('#name').val().split(" ");
+        let teacher = $('#teacher').val();
+        list_student_id = []
+        $('#myTable').each(function () {
+            var row = $(this).parent().parent();
+            var rowcells = row.find('td input[type=checkbox]');
+
+            for (let i = 0; i < rowcells.length; i++) {
+                if ($(rowcells[i]).is(':checked')) {
+                    list_student_id.push(rowcells[i].value)
+                }
+            }
+        });
+        console.log(list_student_id)
+        post({code: code, name: name, teacher: teacher, student: list_student_id});
+    });
+
+    $(".add-user").click(function (event) {
+        event.preventDefault();
+        let email = $('#email').val();
+        let countryCode = $('#country-select').val();
+        //let countryCode = $(this).prev().data("code")
+        let role = $('#role').val();
+        post({ email: email, code: countryCode, role: role, action: "add-user" });
+    });
+
+</script>
+{% endblock javascripts %}

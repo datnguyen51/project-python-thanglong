@@ -34,7 +34,7 @@
                 {{has_error}}
             </div>
             {% endif %}
-                {% if student %}
+                {% if teacher %}
                 <div class="page-wrapper">
                     <!-- [ Main Content ] start -->
                     <div class="row">
@@ -47,9 +47,9 @@
                                     <h5>Form controls</h5>
                                     <hr>
                                     <div class="column">
-                                        <form action="/info-student/{{student.id}}" method="post" enctype="multipart/form-data">
+                                        <form action="/info-teacher/{{teacher.id}}" method="post" enctype="multipart/form-data">
                                             <div class="avatar-wrapper form-group">
-                                                <img class="profile-pic" {% if student.avatar %} src="static/assets/images/abc.jpg" {% else %} src="static/assets/images/hello-wording-comic-speech-bubble-pop-art-style_1150-39959.jpg" {% endif %} />
+                                                <img class="profile-pic" {% if teacher.avatar %} src="static/assets/images/abc.jpg" {% else %} src="static/assets/images/hello-wording-comic-speech-bubble-pop-art-style_1150-39959.jpg" {% endif %} />
                                                 <div class="upload-button">
                                                     <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                                                 </div>
@@ -60,12 +60,12 @@
                                                 <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
                                                     <div class="form-group col-md-2" style='margin-left: 50px;'>
                                                         <label>Code</label>
-                                                        <input type="text" class="form-control" name='code' id="code" value={{student.code}}>
+                                                        <input type="text" class="form-control" name='code' id="code" value={{teacher.code}}>
                                                     </div>
                                                 
                                                     <div class="form-group col-md-8" style='margin-right: 50px;'>
                                                         <label>Name</label>
-                                                        <input type="text" class="form-control" name='name' id="name" value='{{student.name}}'>
+                                                        <input type="text" class="form-control" name='name' id="name" value='{{teacher.name}}'>
                                                     </div>                                                
                                                 </div>
                                             </div>
@@ -74,12 +74,12 @@
                                                 <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
                                                     <div class="form-group col-md-7" style='margin-left: 50px;'>
                                                         <label>Address</label>
-                                                        <input type="text" class="form-control" name="address" value='{{student.address}}'>
+                                                        <input type="text" class="form-control" name="address" value='{{teacher.address}}'>
                                                     </div>
                                             
                                                     <div class="form-group col-md-3" style='margin-right: 50px;'>
                                                         <label>Gender</label>
-                                                        {% if student.gender == '1' %}
+                                                        {% if teacher.gender == '1' %}
                                                             <select class="form-control" name="gender" value='Male'>
                                                                 <option value='1'>Male</option>
                                                                 <option value='0'>Female</option>
@@ -98,12 +98,12 @@
                                                 <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
                                                     <div class="form-group col-md-4" style='margin-left: 50px;'>
                                                         <label>Birthday</label>
-                                                        <input type="date" class="form-control datepicker-dropdown" name="birthday" value={{student.birthday}}>
+                                                        <input type="date" class="form-control datepicker-dropdown" name="birthday" value={{teacher.birthday}}>
                                                     </div>
 
                                                     <div class="form-group col-md-6" style='margin-right: 50px;'>
                                                         <label>Email</label>
-                                                        <input type="text" class="form-control" name="email" value={{student.email}}>
+                                                        <input type="text" class="form-control" name="email" value={{teacher.email}}>
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,31 +112,26 @@
                                                 <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
                                                     <div class="form-group col-md-4" style='margin-left: 50px;'>
                                                         <label>Phone Number</label>
-                                                        <input type="text" class="form-control" name="phone_number" value={{student.phone_number}}>
+                                                        <input type="text" class="form-control" name="phone_number" value={{teacher.phone_number}}>
                                                     </div>
 
                                                     <div class="form-group col-md-3">
                                                         <label>Identify Card</label>
-                                                        <input type="text" class="form-control" name="identification" value={{student.identification}}>
+                                                        <input type="text" class="form-control" name="identification" value={{teacher.identification}}>
                                                     </div>
                                     
                                                     <div class="form-group col-md-3" style='margin-right: 50px;'>
                                                         <label>Health Insurance</label>
-                                                        <input type="text" class="form-control" name="health_insurance" value={{student.health_insurance}}>
+                                                        <input type="text" class="form-control" name="health_insurance" value={{teacher.health_insurance}}>
                                                     </div>
                                                 </div>                                    
                                             </div>
 
                                             <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
-                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
-                                                    <div class="form-group col-md-2" style='margin-left: 50px;'>
-                                                        <label>Class</label>
-                                                        <input type="text" class="form-control" name="student_class" value={{student.student_class}}>
-                                                    </div>
-                                            
-                                                    <div class="form-group col-md-8" style='margin-right: 50px;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>                                            
+                                                    <div class="form-group col-md-10" style='margin-left: 50px;'>
                                                         <label>Major</label>
-                                                        <input type="text" class="form-control" name="student_major" value='{{student.student_major}}'>
+                                                        <input type="text" class="form-control" name="teacher_major" value='{{teacher.teacher_major}}'>
                                                     </div>
                                                 </div>
                                             </div>
@@ -146,7 +141,7 @@
                                                     <div class="form-group" style="margin-right:auto; margin-left:auto">
                                                         <!-- <button type="submit" class="btn btn-primary" style="width: 100px;">Submit</button> -->
                                                         <input type="submit" class="btn btn-primary" style="width: 100px;" value="Submit">
-                                                        <a href="/students"><button type="button" class="btn btn-warning" title="btn btn-warning"
+                                                        <a href="/teachers"><button type="button" class="btn btn-warning" title="btn btn-warning"
                                                                 style="float:right; width: 100px;">Cancel</button></a>
                                                     </div>
                                                 </div>
@@ -173,7 +168,7 @@
                                     <h5>Form controls</h5>
                                     <hr>
                                     <div class="column">
-                                        <form action="/add-student" method="post" enctype="multipart/form-data">
+                                        <form action="/add-teacher" method="post" enctype="multipart/form-data">
                                             <div class="avatar-wrapper form-group">
                                                 <img class="profile-pic" src="static/assets/images/avatar.png" />
                                                 <div class="upload-button">
@@ -247,15 +242,10 @@
                                             </div>
 
                                             <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
-                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
-                                                    <div class="form-group col-md-2" style='margin-left: 50px;'>
-                                                        <label>Class</label>
-                                                        <input type="text" class="form-control" name="student_class">
-                                                    </div>
-                                            
-                                                    <div class="form-group col-md-8" style='margin-right: 50px;'>
+                                                <div class="row form-group" style='margin-left: auto; margin-right: auto;'>                                            
+                                                    <div class="form-group col-md-10" style='margin-left: 50px;'>
                                                         <label>Major</label>
-                                                        <input type="text" class="form-control" name="student_major">
+                                                        <input type="text" class="form-control" name="teacher_major">
                                                     </div>
                                                 </div>
                                             </div>
@@ -263,9 +253,8 @@
                                             <div class="col-md-9" style='margin-left: auto; margin-right: auto;'>
                                                 <div class="row form-group" style='margin-left: auto; margin-right: auto;'>
                                                     <div class="form-group" style="margin-right:auto; margin-left:auto">
-                                                        <!-- <button type="submit" class="btn btn-primary" style="width: 100px;">Submit</button> -->
                                                         <input type="submit" class="btn btn-primary" style="width: 100px;" value="Submit">
-                                                        <a href="/students"><button type="button" class="btn btn-warning" title="btn btn-warning"
+                                                        <a href="/teachers"><button type="button" class="btn btn-warning" title="btn btn-warning"
                                                                 style="float:right; width: 100px;">Cancel</button></a>
                                                     </div>
                                                 </div>

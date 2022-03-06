@@ -19,7 +19,7 @@ def register_extensions(app):
 
 
 def register_blueprints(app):
-    for module_name in ('api.students', 'authentication', 'home'):
+    for module_name in ('api.teachers', 'api.students', 'api.student_class', 'api.chart', 'authentication', 'home'):
         module = import_module('apps.{}.routes'.format(module_name))
         # print(module.blueprint)
         app.register_blueprint(module.blueprint)

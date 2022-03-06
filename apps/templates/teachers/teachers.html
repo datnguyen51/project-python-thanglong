@@ -28,12 +28,6 @@
         </div>
         <!-- [ breadcrumb ] end -->
         <div class="main-body">
-            {% if has_error %}
-            <div class="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                {{has_error}}
-            </div>
-            {% endif %}
             <div class="page-wrapper">
                 <!-- [ Main Content ] start -->
                 <div class="row">
@@ -41,15 +35,10 @@
                     <div class="col-xl-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Student</h5>
+                                <h5>Teacher</h5>
                                 <!-- <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span> -->
-                                <form action='/import-student', method='post'>
-                                    <button type="submit" class="btn btn-success"
-                                        title="btn btn-primary" style="float:right; width: 100px;">Import</button>
-                                </form>
-                                <a href="/add-student"><button type="button" class="btn btn-primary"
-                                        title="btn btn-primary" style="float:right; width: 100px;">Add</button>
-                                </a>
+                                <a href="/add-teacher"><button type="button" class="btn btn-primary"
+                                        title="btn btn-primary" style="float:right; width: 100px;">Add</button></a>
                             </div>
                             <div class="card-block table-border-style">
                                 <div class="table-responsive">
@@ -65,14 +54,14 @@
                                                 </th>
                                                 <th>Code</th>
                                                 <th>Name</th>
-                                                <th>Class</th>
+                                                <th>Email</th>
                                                 <th>Major</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% if student %}
-                                                {% for data_student in student %}
+                                            {% if teacher %}
+                                                {% for data_teacher in teacher %}
                                                 <tr>
                                                     <th>
                                                         <div class="form-check">
@@ -81,13 +70,13 @@
                                                             <label class="form-check-label"></label>
                                                         </div>
                                                     </th>
-                                                    <td>{{ data_student.code }}</td>
-                                                    <td>{{ data_student.name }}</td>
-                                                    <td>{{ data_student.student_class }}</td>
-                                                    <td>{{ data_student.student_major }}</td>
+                                                    <td>{{ data_teacher.code }}</td>
+                                                    <td>{{ data_teacher.name }}</td>
+                                                    <td>{{ data_teacher.email }}</td>
+                                                    <td>{{ data_teacher.teacher_major }}</td>
                                                     <th>
-                                                        <a href="/info-student/{{data_student.id}}" style='font-size:18px'><i class='fas fa-edit'></i></a>
-                                                        <a href="/student/{{data_student.id}}" style='font-size:18px'><i class='far fa-trash-alt'></i></a>
+                                                        <a href="/info-teacher/{{data_teacher.id}}" style='font-size:18px'><i class='fas fa-edit'></i></a>
+                                                        <a href="/teacher/{{data_teacher.id}}" style='font-size:18px'><i class='far fa-trash-alt'></i></a>
                                                     </th>
                                                 </tr>                                                
                                                 {% endfor %}
